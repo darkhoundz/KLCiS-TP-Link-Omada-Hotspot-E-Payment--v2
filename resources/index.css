@@ -1,0 +1,320 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box
+}
+
+html {
+  height: 100%;
+}
+
+body.portal {
+  text-align: center;
+  margin: 0;
+  height: 80%;
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  background: url("background.png") 0% 0% / cover repeat;
+}
+
+.logo-img {
+  padding-top: 10px;
+  width: 100%;
+  height: auto;
+  z-index: 10;
+  position: relative;
+}
+
+.oper-section-outer {
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 20%;
+}
+
+.oper-section-inner {
+  width: 100%;
+  max-width: 480px;
+  /* background-color: #f5f5f5;
+  padding: 20px; 
+  border-radius: 5px;*/
+}
+
+.oper-section-item {
+  height: 42px;
+  width: 100%;
+  margin-bottom: 5px;
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  body.portal {
+      font-size: 14px;
+  }
+
+  .oper-section-item {
+      width: 100%;
+  }
+
+  .input, .button {
+      font-size: 16px;
+  }
+
+  .checkout-details {
+      width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  body.portal {
+      font-size: 12px;
+  }
+
+  .logo-img {
+      padding-top: 5%;
+  }
+
+  .oper-section-inner {
+      padding: 0 5%;
+  }
+
+  .input, .button {
+      font-size: 14px;
+  }
+
+  .checkout-details {
+      width: 90%;
+  }
+}
+
+#input-phone-num {
+    margin-bottom: 12px;
+}
+
+.add {
+    display: inline-block;
+    background-color: #0492eb;
+    border-radius: 5px 0 0 5px;
+    height: 42px;
+    line-height: 40px;
+    width: 20px;
+}
+
+#country-code{
+    height: 42px;
+    width: 40px;
+    border-radius: 0;
+    color: #fff;
+    background-color: #0492eb;
+}
+
+#phone-number{
+    border-radius: 0 5px 5px 0;
+    height: 42px;
+    width: 440px;
+    
+}
+
+#input-verify-code {
+    margin-bottom: 12px;
+}
+
+#verify-code {
+    border-radius: 5px 0 0 5px;
+    height: 42px;
+    width: 400px;
+    vertical-align: top;
+}
+
+#get-code {
+    display: inline-block;
+    height: 42px;
+    width: 100px;
+    border-radius: 0 5px 5px 0;
+    color: #fff;
+    background-color: #0492eb;
+  
+}
+
+#voucherCode {
+    text-align: center;
+    font-size: 24px;
+    color: green;
+    padding: 5px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+    border: 1px solid #ddd;
+    
+}
+
+.password {
+    background:none;  
+    outline:none;  
+    border:none;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.input {
+    background:none;  
+    outline:none;  
+    border:none;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    border: 1px;
+    border-radius: 5px;
+    color: #f5f5f5;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #28a745;
+    margin-bottom: 2px;
+}
+
+
+/**
+* START OF KLCIS VOUCHER SYSTEM CSS 
+*/
+
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  margin-left: 20px;
+  text-align: left;
+}
+.checkout-details #amountDropdown {
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+} 
+input[type="tel"] {
+  width: 90%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size:18px;
+  font-weight:800;
+  color:green;
+  text-align: center;
+}
+.checkout-details #klcis-btn {
+  width: 90%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: #f5f5f5;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: #28a745;
+  margin-bottom: 2px;
+}
+.checkout-details h1 {
+  color: green;
+  font-size: 38px;
+  margin: 10px 0;
+}
+#qrcode {
+  display: none;
+  margin: 0 auto;
+}
+
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+}
+.checkout-details {  
+  border: 1px solid #fafafa;
+  border-radius: 5px;
+  /*box-shadow: 0px 0px 5px #ddd;*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 480px;
+  margin: 5px;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif; 
+  color: #212427;
+  background-color: #f5f5f5;
+
+}
+.checkout-details h1 {
+  font-size: 30px;
+  text-align: center;
+  color: green;
+  font-family: 'Roboto', sans-serif;  
+}
+.checkout-details #gcashCaption{
+  display: none;
+  margin: 0 auto;
+  font-size: 16px;
+  padding: 10px;
+}
+strong{
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .checkout-details {
+      width: 92%;
+      padding: 10px;
+  }
+
+  .checkout-details h1 {
+      font-size: 28px;
+  }
+
+  .checkout-details #amountDropdown,
+  input[type="tel"],
+  .checkout-details #klcis-btn {
+      width: 95%;
+  }
+
+  label,
+  .checkout-details #gcashCaption,
+  strong {
+      font-size: 14px;
+      /* width: 95%;
+      margin-left: 10%; */
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-details {
+      width: 100%;
+      margin: 0;
+  }
+
+  .checkout-details h1 {
+      font-size: 24px;
+  }
+
+  label,
+  .checkout-details #gcashCaption,
+  strong {
+      font-size: 12px;
+  }
+
+  .form-group {
+      margin-bottom: 20px;
+  }
+}
+
+/**
+* END OF KLCIS VOUCHER SYSTEM CSS
+*/
