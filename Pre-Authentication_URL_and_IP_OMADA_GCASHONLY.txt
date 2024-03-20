@@ -1,3 +1,4 @@
+======= GCASH ONLY ========
 klinternetservices.com
 s2.klinternetservices.com
 payments.gcash.com
@@ -12,25 +13,38 @@ gw.alipayobjects.com
 mdap.paas.mynt.xyz
 mgs-gw.paas.mynt.xyz
 cdnjs.cloudflare.com
-xendit.co
 checkout.xendit.co
-xqd9eal.x.incapdns.net
 45.60.160.35
-xnd-merchant-logos.s3.amazonaws.com
-rum-ingest.us1.signalfx.com
 110.75.232.97
 110.75.232.98
 110.75.232.99
 110.75.232.100
-snowplow-collector.iluma.ai
-xen.to
 18.138.78.193
 3.0.107.195
 3.1.78.74
-traefik-public.ap-southeast-1.tidnex.com
-e9816.cj.akamaiedge.net
 104.67.185.229
 checkout-ui-gateway.xendit.co
 assets.xendit.co
-ab448ad13c5be11eab89b06680ff93a5-46768361.ap-southeast-1.elb.amazonaws.com
+ewallet-service-live.xendit.com
+
+======= PAYMAYA ONLY ========
+klinternetservices.com
+s2.klinternetservices.com
+payments.maya.ph
+assets.paymaya.com
+ewallet-service-live.xendit.co
+fonts.gstatic.com
+glimpse.voyagerapis.com
+updater.voyagerinnovation.com
+sg1.clevertap-prod.com
+firebaselogging-pa.googleapis.com
+cdnjs.cloudflare.com
+api.paymaya.com
+n6sgyu-inapps.appsflyersdk.com
+n6sgyu-launches.appsflyersdk.com
+comms-client-api-production.voyagerapis.com
+api.mayabank.ph
+api-bnpl.mayabank.ph
+
+
 
