@@ -25,7 +25,7 @@ checkout.xendit.co
 104.67.185.229
 checkout-ui-gateway.xendit.co
 assets.xendit.co
-ewallet-service-live.xendit.com
+ewallet-service-live.xendit.co
 
 ======= PAYMAYA ONLY ========
 klinternetservices.com
