@@ -17,4 +17,4 @@
     <option value="180">₱180.00 - 15 DAYS INTERNET</option>
     <option value="300">₱300.00 - 30 DAYS INTERNET</option>
 
-### Finally, add the pre-authentication access hosts and IP. Use the /24 IP block for IP addresses and 8080 for domains.
+### Finally, add the pre-authentication access hosts and IP. Use the /24 IP block for IP addresses.
