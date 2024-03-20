@@ -4,83 +4,68 @@ KLCIS SCRIPTS
 
 */
 
-var amountDropdown = document.getElementById('amountDropdown');
-var numberInput = document.getElementById('numberInput');
-var amountToPay = document.getElementById('amountToPay');
-var contactNumber = document.getElementById('contactNumber');
-var qrcodeContainer = document.getElementById('qrcode');
-var gcashCaption = document.getElementById('gcashCaption');
-var form = document.getElementById('paymentForm');
+$(document).ready(function() {
 
-
-function updateCheckoutCard() {
-  var amount = amountDropdown.value;
-  var number = numberInput.value;
-  amountToPay.textContent = '₱' + amount + '.00';
-  contactNumber.textContent = number;
+  var selectedMethod = 'gcash';
   
-  if (number.length === 11) {
-    generateQR();  
-  }else if(number.length > 11) {  
-  
-     Swal.fire({
-            title: "Mobile number is invalid!",
-            text: "You have typed more than 11 digits. Please re-check.",
-            icon: "warning",
-            timer: 3000
-			});
-			
-    qrcodeContainer.style.display = 'none';
-    gcashCaption.style.display = 'none';
-    qrcodeContainer.innerHTML = '';  
-  } else {
-    qrcodeContainer.style.display = 'none';
-    gcashCaption.style.display = 'none';
-    qrcodeContainer.innerHTML = '';
-  }
-  
-}
-
-function generateQR() {
-  var token = document.getElementById('tokenInput').value;
-  var number = numberInput.value;
-  var amount = amountDropdown.value;
-  var baseLink = 'https://s2.klinternetservices.com/xendit/payment';
-  var regexPattern = /^(09)\d{9}$/;
-
-  if (!regexPattern.test(number)) {
-  qrcodeContainer.style.display = 'none';
-  gcashCaption.style.display = 'none';
-  qrcodeContainer.innerHTML = '';
-  } else {
-  qrcodeContainer.innerHTML = '';
-  var paymentLink = baseLink + '?token=' + encodeURIComponent(token) + '&number=' + encodeURIComponent(number) + '&amount=' + encodeURIComponent(amount);
-  new QRCode(qrcodeContainer, {
-    text: paymentLink,
-    width: 120,
-    height: 120
+  $('#gcash').click(function() {
+      selectedMethod = 'gcash';
+      $('#method').val(selectedMethod);
   });
-  qrcodeContainer.style.display = 'block';
-  gcashCaption.style.display = 'block';
-  }
-}
 
-amountDropdown.addEventListener('change', updateCheckoutCard);
-numberInput.addEventListener('input', updateCheckoutCard);
+  $('#maya').click(function() {
+      selectedMethod = 'maya';
+      $('#method').val(selectedMethod);
+  });
 
-form.addEventListener('submit', function(event) {
-  var number = numberInput.value;
-  if (contactNumber.textContent === '-' || amountToPay.textContent === '₱0.00' || number.length !== 11) {
-  event.preventDefault();
-  
-    Swal.fire({
-            title: "Mobile number is invalid!",
-            text: "Please select a promo and enter a valid 11-digit mobile number.",
-            icon: "warning",
-            timer: 3000
+    var numberInput = $('#numberInput');
+    var qrcodeContainer = $('<div>');
+
+    function generateQR() {
+        var token = $('#tokenInput').val();
+        var amountDropdown = $('#amountDropdown');
+        var amountToPay = $('#amountToPay');
+        var baseLink = 'https://s2.klinternetservices.com/xendit/ewallet';
+        var regexPattern = /^(09)\d{9}$/;
+
+        var number = numberInput.val();
+        var amount = amountDropdown.val();
+
+        if (!regexPattern.test(number)) {
+            Swal.fire({
+                title: "Mobile number is invalid!",
+                text: "Please enter a valid 11-digit mobile number.",
+                icon: "error",
+                timer: 3000
             });
-  
-  }
+        } else {
+            qrcodeContainer.empty();
+
+            var paymentLink = baseLink + '?token=' + encodeURIComponent(token) + '&number=' + encodeURIComponent(number) + '&amount=' + encodeURIComponent(amount) + '&method=' + encodeURIComponent(selectedMethod);
+
+            new QRCode(qrcodeContainer[0], {
+                text: paymentLink,
+                width: 200,
+                height: 200
+            });
+
+            var qrCodeImage = qrcodeContainer.find('canvas')[0].toDataURL("image/png");
+
+            Swal.fire({
+                title: "Scan me!",
+                html: '<img src="' + qrCodeImage + '" alt="QR Code">',
+                showCloseButton: true,
+                showConfirmButton: false,
+                customClass: {
+                    popup: 'custom-swal-width'
+                }
+            });
+        }
+    }
+
+    $('#generate_qr').click(function() {
+        generateQR();
+    });
 });
 
   $(document).ready(function() {
@@ -129,41 +114,41 @@ form.addEventListener('submit', function(event) {
                   });
                   
                   $('#vouchersTableBody').html(vouchersHtml);
-				  
-				   Swal.fire({
+                  
+                  Swal.fire({
                       title: "Vouchers loaded successfully!",
                       text: "You last 10 purchased vouchers has been successfully loaded.",
                       icon: "success",
                       timer: 2000
                       });
-					  
-                  $('#result').text('Showing the last 10 transactions. For more details please log-in to https://s2.klinternetservices.com/client');
-				  
-				  
-              } else if (response.status === 'not_exists') {  
 
-					Swal.fire({
+                  $('#result').text('Showing the last 10 transactions. For more details please log-in to https://s2.klinternetservices.com/client');
+              
+                } else if (response.status === 'not_exists') {
+
+                  Swal.fire({
                       title: "Error",
                       text: "Either your mobile number is not registered or your KLCiS Client API Secret is wrong.",
                       icon: "error",
                       timer: 2000
                       });
-					  
-                  $('#result').text('Either your mobile number is not registered or your KLCiS Client API Secret is wrong.');
+
+                  //$('#result').text('Either your mobile number is not registered or your KLCiS Client API Secret is wrong.');
                   $('#vouchersTable').hide();
               }
           },
           error: function(jqXHR, textStatus, errorThrown) {
+           
               console.error('AJAX error:', textStatus, ', Details:', errorThrown);
-			  
-			   Swal.fire({
+
+                Swal.fire({
                     title: "Error",
                     text: "An error occurred while checking the number.",
                     icon: "error",
                     timer: 2000
                 });
-				
-              $('#result').text('An error occurred while checking the number.');
+
+              //$('#result').text('An error occurred while checking the number.');
           }
       });
 
@@ -194,46 +179,44 @@ form.addEventListener('submit', function(event) {
                           '<td class="text-center text-sm text-muted">' + (new Date(transactions.transaction_date).getMonth() + 1) + '-' + new Date(transactions.transaction_date).getDate() + '-' + new Date(transactions.transaction_date).getFullYear() + '</td>' +
                           '<td class="text-sm ' + statColorClass + ' text-center">' + htmlspecialchars(transactions.stat) + '</td>' +
                           '<td class="text-sm text-center text-muted">₱' + htmlspecialchars(transactions.amount.toString()) + '</td>' +
-                          `<td class="text-center text-muted"><a class="btn btn-success btn-xs" href="${transactions.invoice_url}">Check Status</a></td>` +
+                          `<td class="text-center text-muted"><a class="btn btn-success btn-xs" href="${transactions.invoice_url}" target="_blank">Check Status</a></td>` +
                           '</tr>';
                   });
                   
                   $('#transactionTableBody').html(vouchersHtml);
-				  
-				  
+
                   Swal.fire({
                       title: "Transactions loaded successfully!",
                       text: "You last 10 transaction has been successfully loaded.",
                       icon: "success",
                       timer: 2000
                       });
-					  
+
                   $('#result').text('Showing the last 10 transactions. For more details please log-in to https://s2.klinternetservices.com/client');
                   
               } else if (response.status === 'not_exists') {
-
-				Swal.fire({
+                
+                 Swal.fire({
                       title: "Error!",
                       text: "Either your mobile number is not registered or your KLCiS Client API Secret is wrong.",
                       icon: "error",
                       timer: 2000
                       });
-					  
-                  $('#result').text('Either your mobile number is not registered or your KLCiS Client API Secret is wrong.');
+
+                  //$('#result').text('Either your mobile number is not registered or your KLCiS Client API Secret is wrong.');
                   $('#transactionTable').hide();
               }
           },
           error: function(jqXHR, textStatus, errorThrown) {
-			  
-			  console.error('AJAX error:', textStatus, ', Details:', errorThrown);
-			  
-			   Swal.fire({
+              console.error('AJAX error:', textStatus, ', Details:', errorThrown);
+
+              Swal.fire({
                     title: "Error",
                     text: "An error occurred while checking the number.",
                     icon: "error",
                     timer: 2000
                 });
-				
+
               //$('#result').text('An error occurred while checking the number.');
           }
       });
