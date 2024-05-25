@@ -1,5 +1,8 @@
 # KLCiS-TP-Link-Omada-Hotspot-E-Payment-V3 (Express Checkout Store - Gcash | Maya)
 
+# REQUIRED BEFORE THE SETUP:
+    Enable the HTTPS Redirection on your Omada Portal, Login to your Omada Cloud/hardware controller, select your Site, go to Settings > Portal > Edit  > Check/enable the HTTPS Redirection. This is to prevent slow KLCiS Voucher System payment method loading time.
+
 ![2024-03-20 21_56_26-Control Panel](https://github.com/darkhoundz/KLCiS-TP-Link-Omada-Hotspot-E-Payment--v2/assets/28075740/9686792a-5faf-4af7-ac6d-da5151f6223f)
 ![2024-03-20 21_56_38-Control Panel](https://github.com/darkhoundz/KLCiS-TP-Link-Omada-Hotspot-E-Payment--v2/assets/28075740/1fea744b-616d-4f01-ada0-f975c345b546)
 
@@ -17,4 +20,4 @@
     <option value="180">₱180.00 - 15 DAYS INTERNET</option>
     <option value="300">₱300.00 - 30 DAYS INTERNET</option>
 
-### Finally, add the pre-authentication access hosts and IP. Use the /24 IP block for IP addresses.
+### Finally, add the pre-authentication access hosts URL and IP. Use the /32 IP block for IP addresses.
