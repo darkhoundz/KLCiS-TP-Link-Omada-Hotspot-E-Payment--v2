@@ -31,7 +31,7 @@ var hotspotMap = {
 };
 
 var errorHintMap = {
-    "0": "ok",
+    "0": "Voucher valid! Logging in...",
     "-1": "General error.",
     "-41500": "Invalid authentication type.",
     "-41501": "Failed to authenticate.",

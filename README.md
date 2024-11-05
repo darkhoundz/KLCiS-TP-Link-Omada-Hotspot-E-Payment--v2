@@ -1,17 +1,14 @@
-# KLCiS-TP-Link-Omada-Hotspot-E-Payment-V3 (Express Checkout Store - Gcash | Maya)
+# KLCiS TP Link Omada Hotspot Minimalist E-Payment V3 (Gcash | Maya | ShopeePay)
 
 # REQUIRED BEFORE THE SETUP:
-    Enable the HTTPS Redirection on your Omada Portal, Login to your Omada Cloud/hardware controller, select your Site, go to Settings > Portal > Edit  > Check/enable the HTTPS Redirection. This is to prevent slow KLCiS Voucher System payment method loading time.
-
-![2024-03-20 21_56_26-Control Panel](https://github.com/darkhoundz/KLCiS-TP-Link-Omada-Hotspot-E-Payment--v2/assets/28075740/9686792a-5faf-4af7-ac6d-da5151f6223f)
-![2024-03-20 21_56_38-Control Panel](https://github.com/darkhoundz/KLCiS-TP-Link-Omada-Hotspot-E-Payment--v2/assets/28075740/1fea744b-616d-4f01-ada0-f975c345b546)
+    DISABLE the HTTPS Redirection on your Omada Portal, Login to your Omada Cloud/hardware controller, select your Site, go to Settings > Portal > Edit  > UNCHECK/DISABLE the HTTPS Redirection. This is to prevent slow KLCiS Voucher System payment method loading time.
+# USE WINRAR TO ZIP THE index.html and the resources folder. DO NOT USE WINZIP TO PREVENT UNSUPPORTED BROWSER ERROR.
 
 ### Edit the index.html find this line and replace the value with your KLCiS API KEY:
     <input type="hidden" class="form-control" id="tokenInput" name="token" value="PUT_YOUR_KLCIS_API_KEY_HERE">
 
 ### Edit also the the amount/price value depending on the voucher amount that you have uploaded on your KLCiS Admin Dashboard
 
-    <option value="11">₱11.00 - PROMO! 1 DAY UNLI (no pause)</option>
     <option value="5">₱5.00 - 3 HOURS (no exp.|unli pause)</option>
     <option value="10">₱10.00 - 7 HOURS (no exp.|unli pause)</option>
     <option value="20">₱20.00 - 1 day (no exp.|unli pause)</option>
@@ -20,4 +17,4 @@
     <option value="180">₱180.00 - 15 DAYS INTERNET</option>
     <option value="300">₱300.00 - 30 DAYS INTERNET</option>
 
-### Finally, add the pre-authentication access hosts URL and IP. Use the /32 IP block for IP addresses.
+### Finally, add the pre-authentication access hosts URL and IP..
