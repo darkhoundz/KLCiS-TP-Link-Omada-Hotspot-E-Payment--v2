@@ -18,3 +18,9 @@
     <option value="300">₱300.00 - 30 DAYS INTERNET</option>
 
 ### In your Omada controller go to Settings > Portal > Access Control and enable the Pre-Authentication. Finally, add the pre-authentication access hosts URL and IP in the PRE-AUTHENTICATION.txt file.
+
+### SCREENSHOTS:
+![4](https://github.com/user-attachments/assets/2c354e3c-2b54-4949-9fec-5f8d572e657f)
+![3](https://github.com/user-attachments/assets/901c802e-4227-4d9b-8652-74211f278b60)
+![2](https://github.com/user-attachments/assets/d0464b91-adc1-46c6-a4b5-473cb083f625)
+![1](https://github.com/user-attachments/assets/ae5226d5-0065-40d5-bea0-ffa99fce6ad3)
