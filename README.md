@@ -1,8 +1,8 @@
 # KLCiS TP Link Omada Hotspot Minimalist E-Payment V3 (Gcash | Maya | ShopeePay)
 
-# REQUIRED BEFORE THE SETUP:
+## REQUIRED BEFORE THE SETUP:
     DISABLE the HTTPS Redirection on your Omada Portal, Login to your Omada Cloud/hardware controller, select your Site, go to Settings > Portal > Edit  > UNCHECK/DISABLE the HTTPS Redirection. This is to prevent slow KLCiS Voucher System payment method loading time.
-# USE WINRAR TO ZIP THE index.html and the resources folder. DO NOT USE WINZIP TO PREVENT UNSUPPORTED BROWSER ERROR.
+## USE WINRAR TO ZIP THE index.html and the resources folder. DO NOT USE WINZIP TO PREVENT UNSUPPORTED BROWSER ERROR.
 
 ### Edit the index.html find this line and replace the value with your KLCiS API KEY:
     <input type="hidden" class="form-control" id="tokenInput" name="token" value="PUT_YOUR_KLCIS_API_KEY_HERE">
@@ -17,4 +17,4 @@
     <option value="180">₱180.00 - 15 DAYS INTERNET</option>
     <option value="300">₱300.00 - 30 DAYS INTERNET</option>
 
-### Finally, add the pre-authentication access hosts URL and IP..
+### In your Omada controller go to Settings > Portal > Access Control and enable the Pre-Authentication. Finally, add the pre-authentication access hosts URL and IP in the PRE-AUTHENTICATION.txt file.
