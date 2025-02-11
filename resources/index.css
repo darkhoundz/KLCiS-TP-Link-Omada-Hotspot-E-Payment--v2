@@ -51,6 +51,13 @@ body.portal {
   border-radius: 3px;
 }
 
+.hotspot-section {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
 @media (max-width: 768px) {
   body.portal {
       font-size: 14px;
@@ -394,3 +401,67 @@ opacity: 0.9;
 /**
 * END OF KLCIS VOUCHER SYSTEM CSS
 */
+/* Style for the modal background */
+.advert {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.8); /* Dimmed background */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* Modal content */
+.advert-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: 10% auto; /* Centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Adjust width as needed */
+  max-width: 600px; /* Maximum width */
+  text-align: center;
+}
+
+/* Close button */
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+/* Modal image */
+#advert-image {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Continue button */
+#continueButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#continueButton:hover {
+  background-color: #45a049;
+}

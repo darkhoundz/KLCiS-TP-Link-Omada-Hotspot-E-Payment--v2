@@ -33,7 +33,30 @@
   
       const observer = new MutationObserver((mutations) => {
           mutations.forEach((mutation) => {
-              if (mutation.type === "childList" && operHint.innerText) {
+            if (mutation.type === "childList" && operHint.innerText === "Voucher valid! Logging in...") {
+                  Swal.fire({
+                      title: "Success",
+                      text: operHint.innerText, 
+                      icon: "success",          
+                      confirmButtonText: "OK",
+                  }).then(() => {
+                      setTimeout(() => {
+                      }, 3000);
+                  });
+            }
+            else if (mutation.type === "childList" && operHint.innerText.toLowerCase().includes("redirecting")) {
+              const loading = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><linearGradient id="a1"><stop offset="0" stop-color="#FF156D" stop-opacity="0"></stop><stop offset="1" stop-color="#FF156D"></stop></linearGradient><circle fill="none" stroke="url(#a1)" stroke-width="15" stroke-linecap="round" stroke-dasharray="0 44 0 44 0 44 0 44 0 360" cx="100" cy="100" r="70" transform-origin="center"><animateTransform type="rotate" attributeName="transform" calcMode="discrete" dur="2" values="360;324;288;252;216;180;144;108;72;36" repeatCount="indefinite"></animateTransform></circle></svg>'
+              Swal.fire({
+                      title: "Redirecting",
+                      text: operHint.innerText, 
+                      icon: "info",          
+                      iconHtml: loading,
+                  }).then(() => {
+                      setTimeout(() => {
+                      }, 30000);
+                  });
+            }
+            else if (mutation.type === "childList" && operHint.innerText) {
                   Swal.fire({
                       title: "Notice",
                       text: operHint.innerText, 
@@ -60,9 +83,20 @@
     <div class="wave"></div>
   </div>
   
-  <img class="mx-auto d-block img-fluid mt-2" src="resources/logo.jpg" style="width: 120px; height: auto; margin-bottom: 10px; border-radius: 5px;">
-
-    
+  <!--Advertisement Modal-->
+  <div id="advert" class="advert">
+    <!-- Modal content -->
+    <div class="advert-content">
+        <span class="close">&times;</span>
+        Click anywhere to continue.
+        <h4>Featured Items</h1>
+        <img src="" alt="Advertisement Image" id="advert-image">
+        <button id="continueButton" class="btn btn-block btn-success btn-shadow">Continue to ALMAC Voucher Wifi Portal</button>
+    </div>
+    <script src="resources/advert/advert.js"></script>
+</div>
+  </div>
+  <img id="logo-image" class="mx-auto d-block img-fluid mt-2" src="resources/logo.jpg" style="width: 480px; height: auto; margin-bottom: 10px; border-radius: 5px;">
 
     <div class="container">
       <div class="row justify-content-center p-3">
@@ -89,26 +123,22 @@
             <div class="tab-content" id="klcis-tabContent">
 
                 <div class="tab-pane fade" id="login" role="tabpanel" aria-labelledby="login-tab">
-
                 <p class="text-center text-gray h6">Enter the voucher code and tap Login to begin.</p>
                 <div class="oper-section-outer">
                   <div class="oper-section-inner">
                       <span id="oper-hint" style="color: red; display: none;"></span>
-                      <div id="hotspot-section">
-                          <select id="hotspot-selector" class="oper-section-item" style="display:none;"></select>
-                      </div>
                       <form id="login-form">
                           <div id="input-voucher">
                               <input id="voucherCode" class="oper-section-item input" name="voucherCode" type="text" placeholder="Voucher Code" />
                           </div>
                           <div id="input-user">
-                              <input id="username" class="oper-section-item input" name="username" type="text" placeholder="Username"/>
+                              <input id="username" class="oper-section-item input form-control" name="username" type="text" placeholder="Username"/>
                           </div>
                           <div id="input-password" class="user-input">
-                              <input id="password" class="oper-section-item input" name="password" type="password"  placeholder="Password"/>
+                              <input id="password" class="password oper-section-item input form-control" name="password" type="password"  placeholder="Password"/>
                           </div>
                           <div id="input-simple">
-                              <input id="simplePassword" class="password oper-section-item" name="simplePassword" type="password" placeholder="Password"/>
+                              <input id="simplePassword" class="password oper-section-item " name="simplePassword" type="password" placeholder="Password"/>
                           </div>
                           <div id="input-phone-num">
                               <span class="add">+</span><input id="country-code" class="input"><input id="phone-number" class="input" name="phone-number" type="text" placeholder="Phone Number"/>
@@ -125,7 +155,6 @@
                       </div>
                   </div>
               </div>
-
             </div>
 
               <div class="tab-pane fade" id="voucher" role="tabpanel" aria-labelledby="voucher-tab">
@@ -135,28 +164,27 @@
                   
                     <input type="hidden" class="form-control" id="method" name="method" value=""></input> 
                     <div class="form-group mt-3">
-                            <label class="text-muted text-sm" for="amountDropdown">Select promo:</label>
+                          <label class="text-muted text-sm" for="amountDropdown">Select promo:</label>
                             <select id="amountDropdown" name="amount" class="form-control text-lg btn-block">
-              
-                            <!--PAKI-EDIT NG VALUE SAKA DESCRIPTION BASE SA VOUCHER AMOUNT NA NAKA-UPLOAD SA IYONG KLCIS ACCOUNT -->
-                            <option value="5">₱5.00 - 3 HOURS INTERNET</option>
-                            <!-- <option value="10">₱10.00 - 7 HOURS INTERNET</option>
-                            <option value="20">₱20.00 - 24 HOURS INTERNET</option>
-                            <option value="50">₱50.00 - 3 DAYS INTERNET</option>
-                            <option value="100">₱100.00 - 7 DAYS INTERNET</option>
-                            <option value="180">₱180.00 - 15 DAYS INTERNET</option>
-                            <option value="300">₱300.00 - 30 DAYS INTERNET</option> -->
+                              <option disabled value="2">₱2.00 - 1 HOURS INTERNET (SOLD OUT)</option>
+                              <option selected value="5">₱5.00 - 3 HOURS INTERNET (INTRODUCTORY PROMO)</option>
+                              <option value="10">₱10.00 - 7 HOURS INTERNET</option>
+                              <option value="20">₱20.00 - 24 HOURS INTERNET</option>
+                              <option value="50">₱50.00 - 3 DAYS INTERNET</option>
+                              <option value="100">₱100.00 - 7 DAYS INTERNET</option>
+                              <option value="180">₱180.00 - 15 DAYS INTERNET</option>
+                              <option value="300">₱300.00 - 30 DAYS INTERNET</option>
                             </select>
-              
                           <!--PAKI-PALITAN ANG value="PUT_YOUR_KLCIS_API_KEY_HERE" ng iyong KLCiS API KEY-->
                         <input type="hidden" class="form-control" id="tokenInput" name="token" value="PLACEHOLDER">
+                        <script src="resources/secret_inject.js"></script>
                         <label class="text-muted text-sm mt-1" for="numberInput">Mobile number for SMS notification:</label>
                         <input type="tel" id="numberInput" class="form-control text-center text-lg" style="width:100%; letter-spacing: 3px;" placeholder="e.g. 09912346789" name="number" pattern="[0]{1}[9]{1}[0-9]{9}" autocomplete="tel" required>
                       </div>
       
                       <button type="submit" class="btn btn-md btn-primary btn-block rounded-pill" id="gcash"><img src="resources/gcash_logo.png" style="height: 28px; width: 120px;"></button>
                       <button type="submit" class="btn btn-md btn-success btn-block rounded-pill" id="maya"><img src="resources/maya_logo.png" style="height: 25px; width: 80px;"></button>
-                      <button type="submit" class="btn btn-md btn-warning btn-block rounded-pill" id="spay"><img src="resources/spay_logo.svg" style="height: 28px; width: 120px;"></button>
+                      <button type="submit" class="btn btn-md btn-warning btn-block rounded-pill" id="spay"><img src="resources/spay.png" style="height: 28px; width: 120px;"></button>
 
                 </form>
                 <div class="text-center">                  
@@ -213,9 +241,16 @@
               <div class="text-center text-xs text-muted" id="result"></div>
               </div>
               <hr>
-              <p class="text-muted text-sm mb-0 mt-0 text-center">No KLCiS client account? <br>
-                <a class="text-muted text-sm" href="https://s2.klinternetservices.com/client"><strong>CLICK HERE TO SIGN-UP!</strong></a>
-              </p>            
+
+              <div id="klics-signup">
+                <p class="text-muted text-sm mb-0 mt-0 text-center">No KLCiS client account? <br>
+                  <a class="text-muted text-sm" href="https://s2.klinternetservices.com/client"><strong>CLICK HERE TO SIGN-UP!</strong></a>
+                </p>
+              </div>
+              <div id="hotspot-section" style="display:none;">
+                <select id="hotspot-selector" class="login-selector form-control btn-block">
+                </select>
+              </div>            
           </div>
         </div>      
       </div>
@@ -233,6 +268,8 @@
 <script src="resources/adminlte.min.js"></script>
 
 </body>
+
+
 </html>
 
 
