@@ -1,5 +1,5 @@
 function secretInjectKey() {
-    fetch(secretkey.txt)
+    fetch('secret.txt')
         .then(response => response.text())
         .then(secretkey => {
             document.getElementById('tokenInput').value = secretkey;
