@@ -22,14 +22,7 @@ window.onclick = function() {
 };
 
 // Array of image URLs
-const images = [
-    "https://i.postimg.cc/vZXV08pG/img1.png",
-    "https://i.postimg.cc/ZnkBWWyx/img2.png",
-    "https://i.postimg.cc/R0DnzsS8/img3.png",
-    "https://i.postimg.cc/kg7SNRYj/img4.png",
-    "https://i.postimg.cc/SKsz3FhC/img5.png",
-    "https://i.postimg.cc/kXQ8tvs6/img6.png"
-];
+const images = [];
 
 // Function to get a random index to start with
 function getRandomIndex() {
@@ -44,9 +37,21 @@ function changeImage() {
     modalImage.src = images[currentImageIndex];
 }
 
+function injectAds() {
+    fetch('ads.txt')
+        .then(response => response.text())
+        .then(data => {
+            images = data.split('\n').filter(url => url.trim() !== '');
+            console.log(images)
+        })
+        .catch( err => console.error("Failed to get the advertisement images:", err));
+}
+
 // Automatically open the modal and start changing images
 window.onload = function() {
+    injectAds();
     modal.style.display = "flex";
     modalImage.src = images[currentImageIndex]; // Set the initial random image
     setInterval(changeImage, 4000); // Change image every 4 seconds
 };
+
