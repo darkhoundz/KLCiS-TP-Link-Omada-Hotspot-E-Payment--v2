@@ -8,4 +8,4 @@ function secretInjectKey() {
         });
 }
 
-window.onload = secretInjectKey;
+window.addEventListener("load", () => {secretInjectKey()})

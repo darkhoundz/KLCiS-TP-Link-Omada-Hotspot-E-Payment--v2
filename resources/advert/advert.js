@@ -42,16 +42,15 @@ function injectAds() {
         .then(response => response.text())
         .then(data => {
             images = data.split('\n').filter(url => url.trim() !== '');
-            console.log(images)
         })
         .catch( err => console.error("Failed to get the advertisement images:", err));
 }
 
 // Automatically open the modal and start changing images
-window.onload = function() {
+window.addEventListener("load", () => {
     injectAds();
+    if (images.length === 0) return;
     modal.style.display = "flex";
     modalImage.src = images[currentImageIndex]; // Set the initial random image
     setInterval(changeImage, 4000); // Change image every 4 seconds
-};
-
+})
