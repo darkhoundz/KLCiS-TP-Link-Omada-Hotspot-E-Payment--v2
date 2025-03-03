@@ -2,7 +2,7 @@
 
 ## REQUIRED BEFORE THE SETUP:
 
-    DISABLE the HTTPS Redirection on your Omada Portal, Login to your Omada Cloud/hardware controller, select your Site, go to Settings > Portal > Edit  > UNCHECK/DISABLE the HTTPS Redirection. This is to prevent slow KLCiS Voucher System payment method loading time.
+    ENABLE the HTTPS Redirection on your Omada Portal, Login to your Omada Cloud/hardware controller, select your Site, go to Settings > Portal > Edit  > CHECK the HTTPS Redirection. This is to prevent slow KLCiS Voucher System payment method loading time.
 
 ## USE WINRAR TO ZIP THE index.html and the resources folder ONLY. DO NOT USE WINZIP TO PREVENT UNSUPPORTED BROWSER ERROR.
 
