@@ -1,0 +1,33 @@
+================================================================================================
+[FOR TP-LINK OMADA (CLOUD/HARDWARE) SYSTEMS] - GCASH ONLY SINCE OMADA CAN ONLY HANDLE 32 ENTRIES
+================================================================================================
+IP Range	104.21.18.134 / 32	
+IP Range	172.67.181.222 / 32
+IP Range  110.75.232.0 / 24
+IP Range  104.19.159.0 / 22
+URL		payments.gcash.com
+URL		gcash-api.pulseid.com
+URL		beacons.gcp.gvt2.com
+URL		checkout.xendit.co
+URL		checkout-ui-gateway.xendit.co
+URL		ewallet-service-live.xendit.co
+URL		assets.xendit.co
+URL		customer-segment-api.mynt.xyz
+URL		ilog-sea-aliyun.aliplus.com
+URL		imgs-ac.alipay.com
+URL		mdap.paas.mynt.xyz
+URL		mgs-gw.paas.mynt.xyz
+URL		login.mynt.xyz
+URL		mss.paas.mynt.xyz
+URL		irisk-sea.alipay.com
+URL		iclientgw-sea.alipay.com
+URL		m-gcash-com.s3.ap-southeast-1.amazonaws.com
+URL		mobilegw.alipay.com
+URL		klcis-gen.pages.dev
+URL		checkip.amazonaws.com
+URL		fonts.gstatic.com
+URL		gw.alipayobjects.com
+URL		api.mixpanel.com
+URL		yrrepv-launches.appsflyersdk.com
+URL		api.mynt.xyz
+URL		gw.zamcs.com
