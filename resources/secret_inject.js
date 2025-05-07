@@ -8,4 +8,4 @@ function secretInjectKey() {
         });
 }
 
-window.addEventListener("load", () => {secretInjectKey()})
+window.addEventListener("DOMContentLoaded", () => {secretInjectKey()})
