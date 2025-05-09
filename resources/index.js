@@ -1,3 +1,47 @@
+// Initialize a counter for clicks or taps
+let clickCount = 0;
+
+// Get the logo image and hotspot section elements
+const logoImage = document.getElementById("logo-image");
+const hotspotSection = document.getElementById("hotspot-section");
+const bottom = document.getElementById("klics-signup");
+
+// Add a click event listener to the logo image
+logoImage.addEventListener("click", function() {
+    // Increment the click count
+    clickCount++;
+
+    // If clicked 10 times, change hotspot-section to display block
+    if (clickCount >= 5) {
+        hotspotSection.style.display = "flex";
+        bottom.style.display = "none";
+    } else {
+        hotspotSection.style.display = "none";
+        bottom.style.display = "block";
+    }
+});
+var walletMap = {
+    0: "GCash",
+    1: "Maya",
+    2: "ShopeePay"
+}
+
+const cellno = document.getElementById("numberInput");
+
+function redirecting(ewallet) {
+    if (!cellno.checkValidity()) return;
+    document.getElementById("oper-hint").style.display = "block";
+    document.getElementById("oper-hint").innerHTML = "Thank you for purchasing. We are redirecting you to " + walletMap[ewallet] + ". Please wait.";
+}
+
+const gcashbtn = document.getElementById("gcash");
+const mayabtn = document.getElementById("maya");
+const spaybtn = document.getElementById("spay");
+
+gcashbtn.addEventListener("click", () => redirecting(0));
+mayabtn.addEventListener("click", () => redirecting(1));
+spaybtn.addEventListener("click", () => redirecting(2));
+
 var Ajax = {
     post: function (url, data, fn) {
         var xhr = new XMLHttpRequest();
@@ -175,14 +219,34 @@ Ajax.post(
                     window.authType = 7;
                     break;
                 case 11:
-                    document.getElementById("hotspot-section").style.display = "block";
-                    var options = "";
-                    for (var i=0;i<globalConfig.hotspotTypes.length;i++) {
-                        options += '<option value="'+globalConfig.hotspotTypes[i]+'">'+hotspotMap[globalConfig.hotspotTypes[i]]+'</option>';
+                    // document.getElementById("hotspot-section").style.display = "block";
+                    var options = '';
+                    var voucherIndex = -1; // Initialize with -1 to indicate no voucher found yet
+
+                    // Loop through hotspotTypes to find the index of the hotspot containing "voucher"
+                    for (var i = 0; i < globalConfig.hotspotTypes.length; i++) {
+                        // Check if the hotspot type contains the substring "voucher" (case-insensitive)
+                        if (hotspotMap[globalConfig.hotspotTypes[i]].toLowerCase().includes("voucher")) {
+                            voucherIndex = i; // Store the index of the voucher hotspot
+                        }
+                        // Build the options string
+                        options += '<option value="' + globalConfig.hotspotTypes[i] + '">' + hotspotMap[globalConfig.hotspotTypes[i]] + '</option>';
                     }
+
+                    // Set the innerHTML of the select element
                     document.getElementById("hotspot-selector").innerHTML = options;
-                    hotspotChang(globalConfig.hotspotTypes[0]);
-                    window.authType = globalConfig.hotspotTypes[0];
+
+                    // If a voucher hotspot was found, set it as the default selected option
+                    if (voucherIndex !== -1) {
+                        document.getElementById("hotspot-selector").selectedIndex = voucherIndex;
+                        hotspotChang(globalConfig.hotspotTypes[voucherIndex]); // Call hotspotChang with the voucher hotspot
+                        window.authType = globalConfig.hotspotTypes[voucherIndex]; // Set authType to the voucher hotspot
+                    } else {
+                        // If no voucher hotspot was found, default to the first option
+                        document.getElementById("hotspot-selector").selectedIndex = 0;
+                        hotspotChang(globalConfig.hotspotTypes[0]);
+                        window.authType = globalConfig.hotspotTypes[0];
+                    }
                     break;
             }
         }
